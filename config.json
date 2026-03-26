@@ -1,0 +1,12 @@
+{
+  "schedules": [
+    {
+      "channelId": "796264757236596757",
+      "dayOfWeek": 6,
+      "hour": 21,
+      "minute": 0,
+      "message": "<@&1122099548056195144> 定例会です！"
+    }
+  ],
+  "timezone": "Asia/Tokyo"
+}
