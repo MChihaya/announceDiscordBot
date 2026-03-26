@@ -15,8 +15,10 @@ const dayNames = ["日", "月", "火", "水", "木", "金", "土"];
 client.once("ready", () => {
   console.log(`ログイン成功: ${client.user.tag}`);
 
+  const mention = `<@&${config.roleId}>`;
+
   for (const schedule of config.schedules) {
-    const { channelId, dayOfWeek, hour, minute, message } = schedule;
+    const { channelId, dayOfWeek, hour, minute, messages } = schedule;
 
     // node-cron形式: 分 時 * * 曜日
     const cronExpression = `${minute} ${hour} * * ${dayOfWeek}`;
@@ -30,8 +32,11 @@ client.once("ready", () => {
             console.error(`チャンネルが見つかりません: ${channelId}`);
             return;
           }
+          const totalWeight = messages.reduce((sum, m) => sum + m.weight, 0);
+          let rand = Math.random() * totalWeight;
+          const picked = messages.find((m) => (rand -= m.weight) < 0);
           await channel.send({
-            content: message,
+            content: `${mention} ${picked.text}`,
             allowedMentions: { parse: ["roles"] },
           });
           console.log(

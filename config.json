@@ -1,11 +1,24 @@
 {
+  "roleId": "1122099548056195144",
   "schedules": [
     {
       "channelId": "796264757236596757",
       "dayOfWeek": 5,
       "hour": 21,
       "minute": 0,
-      "message": "<@&1122099548056195144> 定例会です！"
+      "messages": [
+        { "text": "定例会の時間です！", "weight": 50 },
+        { "text": "定例会です～", "weight": 50 },
+        { "text": "本日は定例会です～", "weight": 50 },
+        { "text": "今日は定例会のはず", "weight": 50 },
+        { "text": "今日は定例会でしたよね？", "weight": 50 },
+        { "text": "定例会やるけえするちょる", "weight": 10 },
+        { "text": "定例会やるけえ", "weight": 10 },
+        { "text": "今日は定例会かあ、そうかあ", "weight": 10 },
+        { "text": "今日も定例会に来ないつもり？", "weight": 5 },
+        { "text": "定例会、気持ち良すぎだろ！", "weight": 5 },
+        { "text": "👁👃👁", "weight": 5 }
+      ]
     }
   ],
   "timezone": "Asia/Tokyo"
