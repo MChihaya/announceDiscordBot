@@ -4,7 +4,8 @@
   "description": "毎週指定時刻にメッセージを投稿するDiscord Bot",
   "main": "bot.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node bot.js",
+    "send": "node send.js"
   },
   "dependencies": {
     "discord.js": "^14.16.0",

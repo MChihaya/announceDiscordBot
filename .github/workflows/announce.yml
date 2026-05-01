@@ -1,0 +1,45 @@
+name: Weekly Discord Announce
+
+on:
+  schedule:
+    # 毎週金曜 21:00 JST = 12:00 UTC
+    # GitHub Actions の cron は UTC 指定。混雑時は数分〜十数分遅延することがあります。
+    - cron: '0 12 * * 5'
+  workflow_dispatch: # 手動実行 (テスト用)
+    inputs:
+      index:
+        description: '送信したい schedules の index (空なら全件)'
+        required: false
+        default: ''
+
+# 同時実行を抑止 (重複送信防止)
+concurrency:
+  group: weekly-announce
+  cancel-in-progress: false
+
+jobs:
+  announce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Send announcement
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+        run: |
+          if [ -n "${{ github.event.inputs.index }}" ]; then
+            node send.js --index "${{ github.event.inputs.index }}"
+          else
+            node send.js
+          fi
