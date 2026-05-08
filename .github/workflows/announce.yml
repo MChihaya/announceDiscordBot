@@ -4,7 +4,7 @@ on:
   schedule:
     # 毎週金曜 21:00 JST = 12:00 UTC
     # GitHub Actions の cron は UTC 指定。混雑時は数分〜十数分遅延することがあります。
-    - cron: '0 12 * * 5'
+    - cron: '59 11 * * 5'
   workflow_dispatch: # 手動実行 (テスト用)
     inputs:
       index:

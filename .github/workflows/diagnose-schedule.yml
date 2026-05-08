@@ -1,0 +1,18 @@
+# 診断用: schedule trigger が機能するか確認するためだけの一時ワークフロー
+# Discord には送信しない (echo するだけ)
+# 2-3 時間動かしてみて、Actions タブで実行履歴が残ったら schedule は機能している
+# 確認できたらこのファイルは削除すること
+name: Diagnose Schedule
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'   # 10分おき
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "schedule fired at $(date -u) UTC"
+          echo "trigger: ${{ github.event_name }}"
